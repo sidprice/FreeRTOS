@@ -1,6 +1,6 @@
 /*
- * FreeRTOS VeriFast Proofs
- * Copyright (C) Amazon.com, Inc. or its affiliates.  All Rights Reserved.
+ * FreeRTOS V202012.00
+ * Copyright (C) 2020 Amazon.com, Inc. or its affiliates.  All Rights Reserved.
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy of
  * this software and associated documentation files (the "Software"), to deal in
@@ -18,6 +18,10 @@
  * COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER
  * IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
  * CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+ *
+ * https://www.FreeRTOS.org
+ * https://github.com/FreeRTOS
+ *
  */
 
 #include "proof/queue.h"
@@ -60,10 +64,10 @@ BaseType_t xQueueGenericSendFromISR( QueueHandle_t xQueue,
      * assigned a priority above the configured maximum system call priority.
      * Only FreeRTOS functions that end in FromISR can be called from interrupts
      * that have been assigned a priority at or (logically) below the maximum
-     * system call	interrupt priority.  FreeRTOS maintains a separate interrupt
+     * system call interrupt priority.  FreeRTOS maintains a separate interrupt
      * safe API to ensure interrupt entry is as fast and as simple as possible.
      * More information (albeit Cortex-M specific) is provided on the following
-     * link: http://www.freertos.org/RTOS-Cortex-M3-M4.html */
+     * link: https://www.FreeRTOS.org/RTOS-Cortex-M3-M4.html */
     portASSERT_IF_INTERRUPT_PRIORITY_INVALID();
 
     /* Similar to xQueueGenericSend, except without blocking if there is no room
@@ -164,7 +168,7 @@ BaseType_t xQueueGenericSendFromISR( QueueHandle_t xQueue,
                             if( xTaskRemoveFromEventList( &( pxQueue->xTasksWaitingToReceive ) ) != pdFALSE )
                             {
                                 /* The task waiting has a higher priority so record that a
-                                 * context	switch is required. */
+                                 * context switch is required. */
                                 if( pxHigherPriorityTaskWoken != NULL )
                                 {
                                     *pxHigherPriorityTaskWoken = pdTRUE;
